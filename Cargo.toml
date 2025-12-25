@@ -7,10 +7,15 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-dioxus = { version = "0.7.1", features = [] }
+dioxus = { version = "0.7.1", features = ["fullstack"] }
+reqwest = { version = "0.12.28", features = ["json"] }
+serde = { version = "1.0.228", features = ["derive"] }
+tokio = { version = "1", optional = true }
+rusqlite = { version = "0.32.1", optional = true }
 
 [features]
-default = ["web"]
+default = []
 web = ["dioxus/web"]
 desktop = ["dioxus/desktop"]
 mobile = ["dioxus/mobile"]
+server = ["dioxus/server", "dep:rusqlite"]
